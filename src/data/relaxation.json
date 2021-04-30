@@ -1,0 +1,313 @@
+[
+    {
+        "type": "audio",
+        "filename": "01-introduction.m4a",
+        "duration": 5874
+    },
+    {
+        "type": "silence",
+        "ratio": 0.00128125369250196
+    },
+    {
+        "type": "audio",
+        "filename": "02-comfortable.m4a",
+        "duration": 8859
+    },
+    {
+        "type": "silence",
+        "ratio": 0.00571723869898653
+    },
+    {
+        "type": "audio",
+        "filename": "03-sit-up-straight.m4a",
+        "duration": 10004
+    },
+    {
+        "type": "silence",
+        "ratio": 0.00492143779442142
+    },
+    {
+        "type": "audio",
+        "filename": "04-deep-breaths.m4a",
+        "duration": 28423
+    },
+    {
+        "type": "silence",
+        "ratio": 0.00319886338561323
+    },
+    {
+        "type": "audio",
+        "filename": "05-ready-to-begin.m4a",
+        "duration": 3335
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0031390715466298
+    },
+    {
+        "type": "audio",
+        "filename": "06-scalp-and-forehead.m4a",
+        "duration": 12814
+    },
+    {
+        "type": "silence",
+        "ratio": 0.00269561540750274
+    },
+    {
+        "type": "audio",
+        "filename": "07-focus-object.m4a",
+        "duration": 5288
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0144205103091096
+    },
+    {
+        "type": "audio",
+        "filename": "08-for-each-next-area.m4a",
+        "duration": 10097
+    },
+    {
+        "type": "silence",
+        "ratio": 0.00151828562561482
+    },
+    {
+        "type": "audio",
+        "filename": "09-eyes.m4a",
+        "duration": 8566
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0167879824098104
+    },
+    {
+        "type": "audio",
+        "filename": "10-cheeks.m4a",
+        "duration": 3068
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0184998797045144
+    },
+    {
+        "type": "audio",
+        "filename": "11-throat.m4a",
+        "duration": 3559
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0342322514332246
+    },
+    {
+        "type": "audio",
+        "filename": "12-neck-and-shoulders.m4a",
+        "duration": 3559
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0448638098505631
+    },
+    {
+        "type": "audio",
+        "filename": "13-arms-and-hands.m4a",
+        "duration": 11130
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0197668972448775
+    },
+    {
+        "type": "audio",
+        "filename": "14-right-upper-arm.m4a",
+        "duration": 7351
+    },
+    {
+        "type": "silence",
+        "ratio": 0.018936929575179
+    },
+    {
+        "type": "audio",
+        "filename": "15-right-forearm.m4a",
+        "duration": 4393
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0196708032179398
+    },
+    {
+        "type": "audio",
+        "filename": "16-right-hands-and-fingers.m4a",
+        "duration": 23783
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0390953210038765
+    },
+    {
+        "type": "audio",
+        "filename": "17-left-upper-arm.m4a",
+        "duration": 6777
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0196053169181008
+    },
+    {
+        "type": "audio",
+        "filename": "18-left-forearm.m4a",
+        "duration": 1778
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0193220174905365
+    },
+    {
+        "type": "audio",
+        "filename": "19-left-hands-and-fingers.m4a",
+        "duration": 6204
+    },
+    {
+        "type": "silence",
+        "ratio": 0.024334566658647
+    },
+    {
+        "type": "audio",
+        "filename": "20-upper-chest.m4a",
+        "duration": 11836
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0396704615502885
+    },
+    {
+        "type": "audio",
+        "filename": "21-tight-or-painful.m4a",
+        "duration": 29130
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0339816951555798
+    },
+    {
+        "type": "audio",
+        "filename": "22-middle-abdomen.m4a",
+        "duration": 42590
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0339162088557408
+    },
+    {
+        "type": "audio",
+        "filename": "23-pelvic-region.m4a",
+        "duration": 21546
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0351383825168663
+    },
+    {
+        "type": "audio",
+        "filename": "24-legs-and-feet.m4a",
+        "duration": 16701
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0328242959866864
+    },
+    {
+        "type": "audio",
+        "filename": "25-right-thighs.m4a",
+        "duration": 8330
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0328613099822475
+    },
+    {
+        "type": "audio",
+        "filename": "26-right-calf-and-shins.m4a",
+        "duration": 3628
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0324975762950984
+    },
+    {
+        "type": "audio",
+        "filename": "27-right-foot-and-toes.m4a",
+        "duration": 2944
+    },
+    {
+        "type": "silence",
+        "ratio": 0.033835774596156
+    },
+    {
+        "type": "audio",
+        "filename": "28-tuning-in.m4a",
+        "duration": 16946
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0694418147107855
+    },
+    {
+        "type": "audio",
+        "filename": "29-left-leg-and-foot.m4a",
+        "duration": 5734
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0711658127348075
+    },
+    {
+        "type": "audio",
+        "filename": "30-entire-body.m4a",
+        "duration": 3720
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0328250077942933
+    },
+    {
+        "type": "audio",
+        "filename": "31-connect-with-sensations.m4a",
+        "duration": 12847
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0344913494021528
+    },
+    {
+        "type": "audio",
+        "filename": "32-let-go.m4a",
+        "duration": 16455
+    },
+    {
+        "type": "silence",
+        "ratio": 0.0333560162690747
+    },
+    {
+        "type": "audio",
+        "filename": "33-continue.m4a",
+        "duration": 4344
+    },
+    {
+        "type": "silence",
+        "ratio": 0.129935495994659
+    },
+    {
+        "type": "audio",
+        "filename": "34-time-to-finish.m4a",
+        "duration": 11438
+    },
+    {
+        "type": "silence",
+        "ratio": 11438
+    },
+    {
+        "type": "audio",
+        "filename": "35-thank-you.m4a",
+        "duration": 943
+    }
+]
