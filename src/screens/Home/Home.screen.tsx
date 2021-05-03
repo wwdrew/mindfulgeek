@@ -1,7 +1,8 @@
-import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import { Audio } from 'expo-av';
 import relaxation from '../../../src/data/relaxation.json'
+import Slider from '@react-native-community/slider';
 
 type AudioSegment = {
   type: "audio"
@@ -17,7 +18,8 @@ type SilenceSegment = {
 type AudioFile = AudioSegment | SilenceSegment
 
 const MindfulGeek = () => {
-  const [sound, setSound] = React.useState<Audio.Sound>();
+    const [duration, setDuration] = useState(30);
+  const [sound, setSound] = useState<Audio.Sound>();
   // console.log({relaxation})
 
   const reducer = (accumulator: number, currentValue: AudioSegment) => accumulator + currentValue.duration;
@@ -62,6 +64,15 @@ const MindfulGeek = () => {
 
   return (
     <View style={styles.container}>
+        <Slider
+            style={{width: 400, height: 50}}
+            minimumValue={10}
+            maximumValue={60}
+            step={5}
+            value={duration}
+            onValueChange={value => setDuration(value)}
+        />
+        <Text>{duration}</Text>
       <Button title="Play Sound" onPress={playSound} />
     </View>
   );
