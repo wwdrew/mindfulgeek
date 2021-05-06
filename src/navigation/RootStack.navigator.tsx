@@ -8,15 +8,15 @@ export type RootStackProps = {
   Player: PlayerScreenParams;
 };
 
-const RootStack = createStackNavigator<RootStackProps>();
+const Root = createStackNavigator<RootStackProps>();
 
-const Root = () => {
+const RootStack = () => {
   return (
-    <RootStack.Navigator mode="modal" initialRouteName="Home">
-      <RootStack.Screen name="Home" component={HomeStack} />
-      <RootStack.Screen name="Player" component={PlayerScreen} />
-    </RootStack.Navigator>
+    <Root.Navigator mode="modal" initialRouteName="Home">
+      <Root.Screen name="Home" component={HomeStack} />
+      <Root.Screen name="Player" component={PlayerScreen} />
+    </Root.Navigator>
   );
 };
 
-export default Root;
+export default RootStack;
