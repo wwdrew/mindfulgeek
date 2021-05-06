@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { PlayerScreen, PlayerScreenParams } from '../screens';
 import HomeStack from './Tabs.navigator';
 
-type RootStackProps = {
+export type RootStackProps = {
   Home: undefined;
   Player: PlayerScreenParams;
 };

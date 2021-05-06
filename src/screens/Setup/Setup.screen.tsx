@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
-import { Audio } from 'expo-av';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { SegmentsList } from '../../components';
+import { RootStackProps } from '../../navigation/RootStack.navigator';
 
 export type SetupScreenParams = undefined;
 
-const SetupScreen = () => {
+type SetupScreenNavigationProp = StackNavigationProp<RootStackProps, 'Setup'>;
+
+interface Props {
+  navigation: SetupScreenNavigationProp;
+}
+
+const SetupScreen = ({ navigation }: Props) => {
   const [duration, setDuration] = useState(30);
-  const [sound, setSound] = useState<Audio.Sound>();
 
-  async function playSound() {
-    console.log('Loading Sound');
-    const { sound: soundToPlay } = await Audio.Sound.createAsync(
-      require('../../../assets/audio/relaxation/02-comfortable.m4a')
-    );
-    setSound(soundToPlay);
+  const onPress = () => {
+    navigation.navigate('Player');
+  };
 
-    console.log('Playing Sound');
-    await soundToPlay.playAsync();
-  }
-
-  useEffect(() => {
-    return sound
-      ? () => {
-          console.log('Unloading Sound');
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
+  const onValueChange = (value: number) => setDuration(value);
 
   return (
     <View style={styles.container}>
@@ -38,10 +30,10 @@ const SetupScreen = () => {
         maximumValue={60}
         step={5}
         value={duration}
-        onValueChange={(value) => setDuration(value)}
+        onValueChange={onValueChange}
       />
       <Text>{duration}</Text>
-      <Button title="Play Sound" onPress={playSound} />
+      <Button title="Play Sound" onPress={onPress} />
       <SegmentsList duration={duration} />
     </View>
   );
