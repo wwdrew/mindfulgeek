@@ -1,1 +1,1 @@
-export { default as SegmentsList } from './SegmentsList/SegmentsList';
+export { default as SegmentsList } from "./SegmentsList/SegmentsList";
