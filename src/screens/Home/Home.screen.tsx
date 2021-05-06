@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { Audio } from "expo-av";
+import React, { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { Audio } from 'expo-av';
 // import relaxation from '../../../src/data/relaxation.json'
-import Slider from "@react-native-community/slider";
-import { SegmentsList } from "../../components";
+import Slider from '@react-native-community/slider';
+import { SegmentsList } from '../../components';
 
 // type AudioSegment = {
 //   type: "audio"
@@ -46,20 +46,20 @@ const MindfulGeek = () => {
 
   //   }, {})
   async function playSound() {
-    console.log("Loading Sound");
-    const { sound } = await Audio.Sound.createAsync(
-      require("../../../assets/audio/relaxation/02-comfortable.m4a")
+    console.log('Loading Sound');
+    const { sound: soundToPlay } = await Audio.Sound.createAsync(
+      require('../../../assets/audio/relaxation/02-comfortable.m4a')
     );
-    setSound(sound);
+    setSound(soundToPlay);
 
-    console.log("Playing Sound");
-    await sound.playAsync();
+    console.log('Playing Sound');
+    await soundToPlay.playAsync();
   }
 
   useEffect(() => {
     return sound
       ? () => {
-          console.log("Unloading Sound");
+          console.log('Unloading Sound');
           sound.unloadAsync();
         }
       : undefined;
@@ -68,7 +68,7 @@ const MindfulGeek = () => {
   return (
     <View style={styles.container}>
       <Slider
-        style={{ width: 400, height: 50 }}
+        style={styles.slider}
         minimumValue={10}
         maximumValue={60}
         step={5}
@@ -87,8 +87,9 @@ export default MindfulGeek;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  slider: { width: 400, height: 50 },
 });

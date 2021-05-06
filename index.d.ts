@@ -1,11 +1,11 @@
 declare type AudioSegment = {
-  type: "audio";
+  type: 'audio';
   filename: string;
   duration: number;
 };
 
 declare type SilenceSegment = {
-  type: "silence";
+  type: 'silence';
   ratio: number;
 };
 
