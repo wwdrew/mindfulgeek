@@ -16,7 +16,7 @@ const SegmentsList = ({ duration }: Props) => {
   const fullDuration = duration * 60 * 1000;
   const audioFiles = data.filter(isAudioSegment);
   const audioDuration = audioFiles.reduce((value, item) => {
-    return item.type === 'audio' ? item.duration : value;
+    return value + (item.type === 'audio' ? item.duration : 0);
   }, 0);
   const silenceDuration = fullDuration - audioDuration;
 
@@ -28,17 +28,16 @@ const SegmentsList = ({ duration }: Props) => {
         : Math.floor(item.ratio * silenceDuration),
     type: item.type,
   }));
+
   const actualSilenceDuration = audioMap.reduce((value, item) => {
     return item.type === 'silence' ? value + item.duration : value;
   }, 0);
 
-  const silenceVariance = actualSilenceDuration - silenceDuration;
   console.log({
     fullDuration,
     audioDuration,
     silenceDuration,
     actualSilenceDuration,
-    silenceVariance,
   });
 
   return (
