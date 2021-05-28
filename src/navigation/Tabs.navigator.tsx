@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SetupScreen, SetupScreenParams } from '../screens';
+import { SetupScreen, SetupScreenParams } from '@screens';
 
 export type TabsStackParamList = {
   Setup: SetupScreenParams;

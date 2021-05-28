@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { Audio } from 'expo-av';
 import Slider from '@react-native-community/slider';
-import { RootStackProps } from '../../navigation/RootStack.navigator';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/core';
-import prettyMs from 'pretty-ms';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { TabsStackParamList } from '../../navigation/Tabs.navigator';
+import { Audio } from 'expo-av';
+import prettyMs from 'pretty-ms';
+
+import { RootStackProps } from '@navigation/RootStack.navigator';
+import { TabsStackParamList } from '@navigation/Tabs.navigator';
 
 export type PlayerScreenParams = {
   audioSegments: AudioSegment[];

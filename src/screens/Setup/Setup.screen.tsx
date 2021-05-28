@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import Slider from '@react-native-community/slider';
-import { StackNavigationProp } from '@react-navigation/stack';
-// import { SegmentsList } from '../../components';
-import { RootStackProps } from '../../navigation/RootStack.navigator';
-import { TabsStackParamList } from '../../navigation/Tabs.navigator';
 import { CompositeNavigationProp } from '@react-navigation/core';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import Slider from '@react-native-community/slider';
+// import { SegmentsList } from '../../components';
+
+import { RootStackProps } from '@navigation/RootStack.navigator';
+import { TabsStackParamList } from '@navigation/Tabs.navigator';
 
 const audioFile: AudioFile[] = require('../../data/relaxation.json');
 
