@@ -1,12 +1,16 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import RootStack from './src/navigation/RootStack.navigator';
+
+import RootStack from '@navigation/RootStack.navigator';
+import { PlaylistProvider } from './src/hooks/usePlaylist/usePlaylist.provider';
 
 const MindfulGeek = () => {
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <PlaylistProvider>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </PlaylistProvider>
   );
 };
 

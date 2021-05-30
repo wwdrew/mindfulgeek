@@ -1,34 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
-import { CompositeNavigationProp, RouteProp } from '@react-navigation/core';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { Audio } from 'expo-av';
 import prettyMs from 'pretty-ms';
 
-import { RootStackProps } from '@navigation/RootStack.navigator';
-import { TabsStackParamList } from '@navigation/Tabs.navigator';
+import { usePlaylist } from '../../hooks/usePlaylist/usePlaylist.provider';
 
-export type PlayerScreenParams = {
-  audioSegments: AudioSegment[];
-  duration: number;
-};
-
-type PlayerScreenNavigationProp = CompositeNavigationProp<
-  StackNavigationProp<RootStackProps, 'Player'>,
-  BottomTabNavigationProp<TabsStackParamList>
->;
-
-type PlayerScreenRouteProp = RouteProp<RootStackProps, 'Player'>;
-
-interface Props {
-  navigation: PlayerScreenNavigationProp;
-  route: PlayerScreenRouteProp;
-}
-
-const PlayerScreen = ({ route }: Props) => {
-  const { duration, audioSegments } = route.params;
+const PlayerScreen = () => {
+  const { minutes, audioSegments } = usePlaylist();
 
   const [position, setPosition] = useState(0);
   const [segment, setSegment] = useState(0);
@@ -83,14 +62,14 @@ const PlayerScreen = ({ route }: Props) => {
       <Text>Player Screen</Text>
       <Button title="Play Sound" onPress={playSound} />
       <Text>Position: {prettyMs(position, { secondsDecimalDigits: 0 })}</Text>
-      <Text>Duration: {prettyMs(duration, { secondsDecimalDigits: 0 })}</Text>
+      <Text>Duration: {prettyMs(minutes, { secondsDecimalDigits: 0 })}</Text>
       <Text>Segment: {segment}</Text>
       <Text>Segment Start: {segmentStartMs}</Text>
       <Text>Segment Offset: {position - segmentStartMs}</Text>
       <Slider
         style={styles.slider}
         minimumValue={0}
-        maximumValue={duration}
+        maximumValue={minutes}
         step={100}
         value={position}
         onValueChange={onValueChange}

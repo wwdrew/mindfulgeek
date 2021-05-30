@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { CompositeNavigationProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import Slider from '@react-native-community/slider';
-// import { SegmentsList } from '../../components';
 
 import { RootStackProps } from '@navigation/RootStack.navigator';
 import { TabsStackParamList } from '@navigation/Tabs.navigator';
-
-const audioFile: AudioFile[] = require('../../data/relaxation.json');
-
-const isAudioSegment = (segment: AudioFile): segment is AudioSegment =>
-  segment.type === 'audio';
+import { usePlaylist } from '../../hooks/usePlaylist/usePlaylist.provider';
 
 export type SetupScreenParams = undefined;
 
@@ -26,17 +21,13 @@ interface Props {
 }
 
 const SetupScreen = ({ navigation }: Props) => {
-  const [duration, setDuration] = useState(30);
-  const audioSegments = audioFile.filter(isAudioSegment);
-  const audioDuration = audioSegments.reduce((total, segment) => {
-    return total + (segment.type === 'audio' ? segment.duration : 0);
-  }, 0);
+  const { minutes, setMinutes } = usePlaylist();
 
   const onPress = () => {
-    navigation.navigate('Player', { duration: audioDuration, audioSegments });
+    navigation.navigate('Player');
   };
 
-  const onValueChange = (value: number) => setDuration(value);
+  const onValueChange = (newMinutes: number) => setMinutes(newMinutes);
 
   return (
     <View style={styles.container}>
@@ -45,10 +36,10 @@ const SetupScreen = ({ navigation }: Props) => {
         minimumValue={10}
         maximumValue={60}
         step={5}
-        value={duration}
+        value={minutes}
         onValueChange={onValueChange}
       />
-      <Text>Duration: {duration}</Text>
+      <Text>Minutes: {minutes}</Text>
       <Button title="Start" onPress={onPress} />
       {/* <SegmentsList duration={duration} /> */}
     </View>
