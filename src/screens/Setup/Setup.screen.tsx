@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { CompositeNavigationProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
@@ -21,6 +22,7 @@ interface Props {
 }
 
 const SetupScreen = ({ navigation }: Props) => {
+  const { t } = useTranslation();
   const { minutes, setMinutes } = usePlaylist();
 
   const onPress = () => {
@@ -40,7 +42,7 @@ const SetupScreen = ({ navigation }: Props) => {
         onValueChange={onValueChange}
       />
       <Text>Minutes: {minutes}</Text>
-      <Button title="Start" onPress={onPress} />
+      <Button title={t('Start')} onPress={onPress} />
       {/* <SegmentsList duration={duration} /> */}
     </View>
   );

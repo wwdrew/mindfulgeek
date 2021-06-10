@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootStack from '@navigation/RootStack.navigator';
 import { PlaylistProvider } from './src/hooks/usePlaylist/usePlaylist.provider';
 
+import './i18n';
+
 const MindfulGeek = () => {
   return (
     <PlaylistProvider>
