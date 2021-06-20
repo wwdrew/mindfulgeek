@@ -1,9 +1,9 @@
-import i18n from 'i18next';
+import i18n, { LanguageDetectorAsyncModule } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as Localization from 'expo-localization';
 import resources from './src/translations';
 
-const languageDetector = {
+const languageDetector: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
   async: true,
   detect: (cb) => cb(Localization.locale),
