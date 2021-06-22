@@ -2,17 +2,21 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import RootStack from '@navigation/RootStack.navigator';
-import { PlaylistProvider } from './src/hooks/usePlaylist/usePlaylist.provider';
+
+import { PlaylistProvider } from '@hooks/usePlaylist';
+import { OnboardingProvider } from '@hooks/useOnboarding';
 
 import './i18n';
 
 const MindfulGeek = () => {
   return (
-    <PlaylistProvider>
-      <NavigationContainer>
-        <RootStack />
-      </NavigationContainer>
-    </PlaylistProvider>
+    <OnboardingProvider>
+      <PlaylistProvider>
+        <NavigationContainer>
+          <RootStack />
+        </NavigationContainer>
+      </PlaylistProvider>
+    </OnboardingProvider>
   );
 };
 

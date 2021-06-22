@@ -1,20 +1,31 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { PlayerScreen } from '@screens';
-import HomeStack from '@navigation/Tabs.navigator';
+
+import { useOnboarding } from '@hooks/useOnboarding';
+
+import { AppStack, AppStackProps } from './AppStack.navigator';
+import {
+  OnboardingStack,
+  OnboardingStackProps,
+} from './OnboardingStack.navigator';
 
 export type RootStackProps = {
-  Home: undefined;
-  Player: undefined;
+  App: AppStackProps;
+  Onboarding: OnboardingStackProps;
 };
 
 const Root = createStackNavigator<RootStackProps>();
 
 const RootStack = () => {
+  const { onboarded } = useOnboarding();
+
   return (
-    <Root.Navigator mode="modal" initialRouteName="Home">
-      <Root.Screen name="Home" component={HomeStack} />
-      <Root.Screen name="Player" component={PlayerScreen} />
+    <Root.Navigator screenOptions={{ headerShown: false }}>
+      {onboarded ? (
+        <Root.Screen name="App" component={AppStack} />
+      ) : (
+        <Root.Screen name="Onboarding" component={OnboardingStack} />
+      )}
     </Root.Navigator>
   );
 };

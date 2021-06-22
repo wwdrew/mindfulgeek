@@ -6,22 +6,22 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import Slider from '@react-native-community/slider';
 
-import { RootStackProps } from '@navigation/RootStack.navigator';
+import { AppStackProps } from '@navigation/AppStack.navigator';
 import { TabsStackParamList } from '@navigation/Tabs.navigator';
-import { usePlaylist } from '../../hooks/usePlaylist/usePlaylist.provider';
+import { usePlaylist } from '@hooks/usePlaylist';
 
 export type SetupScreenParams = undefined;
 
 type SetupScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabsStackParamList, 'Setup'>,
-  StackNavigationProp<RootStackProps>
+  StackNavigationProp<AppStackProps>
 >;
 
 interface Props {
   navigation: SetupScreenNavigationProp;
 }
 
-const SetupScreen = ({ navigation }: Props) => {
+export const SetupScreen = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const { minutes, setMinutes } = usePlaylist();
 
@@ -43,19 +43,17 @@ const SetupScreen = ({ navigation }: Props) => {
       />
       <Text>Minutes: {minutes}</Text>
       <Button title={t('Start')} onPress={onPress} />
-      {/* <SegmentsList duration={duration} /> */}
     </View>
   );
 };
 
-export default SetupScreen;
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'red',
   },
   slider: { width: 400, height: 50 },
 });

@@ -1,54 +1,23 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-const audioFile: AudioFile[] = require('../../data/relaxation.json');
-
-const isAudioSegment = (segment: AudioFile): segment is AudioSegment =>
-  segment.type === 'audio';
-
 interface Props {
-  duration: number;
+  audioSegments: AudioSegment[];
+  segment: number;
 }
 
-const SegmentsList = ({ duration }: Props) => {
-  const data = audioFile.map((item, index) => ({ id: `${index}`, ...item }));
-  const fullDuration = duration * 60 * 1000;
-  const audioFiles = data.filter(isAudioSegment);
-  const audioDuration = audioFiles.reduce((value, item) => {
-    return value + (item.type === 'audio' ? item.duration : 0);
-  }, 0);
-  const silenceDuration = fullDuration - audioDuration;
-
-  const audioMap = data.map((item) => ({
-    id: item.id,
-    duration:
-      item.type === 'audio'
-        ? item.duration
-        : Math.floor(item.ratio * silenceDuration),
-    type: item.type,
-  }));
-
-  const actualSilenceDuration = audioMap.reduce((value, item) => {
-    return item.type === 'silence' ? value + item.duration : value;
-  }, 0);
-
-  console.log({
-    fullDuration,
-    audioDuration,
-    silenceDuration,
-    actualSilenceDuration,
-  });
-
+export const SegmentsList = ({ audioSegments, segment }: Props) => {
   return (
     <FlatList
-      data={audioMap}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => {
+      data={audioSegments}
+      keyExtractor={(_, index) => `${index}`}
+      renderItem={({ item, index }) => {
         return (
-          <View>
+          <View style={index === segment ? styles.highlight : {}}>
             <Text>Type: {item.type}</Text>
             <Text>Duration: {item.duration}</Text>
+            <Text>Filename: {item.filename}</Text>
           </View>
         );
       }}
@@ -56,4 +25,6 @@ const SegmentsList = ({ duration }: Props) => {
   );
 };
 
-export default SegmentsList;
+const styles = StyleSheet.create({
+  highlight: { backgroundColor: 'red' },
+});

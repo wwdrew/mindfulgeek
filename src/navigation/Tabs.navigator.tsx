@@ -1,19 +1,29 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SetupScreen, SetupScreenParams } from '@screens';
+
+import {
+  BookScreen,
+  BookScreenParams,
+  InfoScreen,
+  InfoScreenParams,
+  SetupScreen,
+  SetupScreenParams,
+} from '@screens';
 
 export type TabsStackParamList = {
+  Book: BookScreenParams;
   Setup: SetupScreenParams;
+  Info: InfoScreenParams;
 };
 
 const Tabs = createBottomTabNavigator<TabsStackParamList>();
 
-const TabsStack = () => {
+export const TabsStack = () => {
   return (
     <Tabs.Navigator>
+      <Tabs.Screen name="Book" component={BookScreen} />
       <Tabs.Screen name="Setup" component={SetupScreen} />
+      <Tabs.Screen name="Info" component={InfoScreen} />
     </Tabs.Navigator>
   );
 };
-
-export default TabsStack;

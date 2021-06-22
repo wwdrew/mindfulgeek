@@ -4,9 +4,12 @@ import Slider from '@react-native-community/slider';
 import { Audio } from 'expo-av';
 import prettyMs from 'pretty-ms';
 
-import { usePlaylist } from '../../hooks/usePlaylist/usePlaylist.provider';
+import { SegmentsList } from '@components';
+import { usePlaylist } from '@hooks/usePlaylist';
 
-const PlayerScreen = () => {
+export type PlayerScreenParams = undefined;
+
+export const PlayerScreen = () => {
   const { minutes, audioSegments } = usePlaylist();
 
   const [position, setPosition] = useState(0);
@@ -74,11 +77,10 @@ const PlayerScreen = () => {
         value={position}
         onValueChange={onValueChange}
       />
+      <SegmentsList audioSegments={audioSegments} segment={segment} />
     </View>
   );
 };
-
-export default PlayerScreen;
 
 const styles = StyleSheet.create({
   container: {

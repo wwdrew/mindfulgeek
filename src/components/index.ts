@@ -1,1 +1,2 @@
-export { default as SegmentsList } from './SegmentsList/SegmentsList';
+export { Button } from './Button/Button';
+export { SegmentsList } from './SegmentsList/SegmentsList';

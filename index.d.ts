@@ -1,3 +1,8 @@
+declare type NoAudioSegment = {
+  type: 'silence';
+  duration: number;
+};
+
 declare type AudioSegment = {
   type: 'audio';
   filename: string;
@@ -10,3 +15,7 @@ declare type SilenceSegment = {
 };
 
 declare type AudioFile = AudioSegment | SilenceSegment;
+
+declare type AudioThing = AudioSegment | NoAudioSegment;
+
+declare type PlayList = AudioThing[];
