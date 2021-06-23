@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { Audio } from 'expo-av';
 import prettyMs from 'pretty-ms';
@@ -7,14 +7,17 @@ import prettyMs from 'pretty-ms';
 import { SegmentsList } from '@components';
 import { usePlaylist } from '@hooks/usePlaylist';
 
+import { audioFiles } from '../../data/relaxation-audio';
+
 export type PlayerScreenParams = undefined;
 
 export const PlayerScreen = () => {
   const { minutes, audioSegments } = usePlaylist();
+  const durationMs = minutes * 60 * 1000;
 
+  const [milliSeconds, setMilliSeconds] = useState(0);
   const [position, setPosition] = useState(0);
   const [segment, setSegment] = useState(0);
-  const [segmentStartMs, setMinSegmentMs] = useState(0);
   const [sound, setSound] = useState<Audio.Sound>();
 
   useEffect(() => {
@@ -27,9 +30,17 @@ export const PlayerScreen = () => {
   }, [sound]);
 
   async function playSound() {
+    const audioSegment = audioSegments[segment];
+
+    if (audioSegment.type === 'silence') {
+      console.log("Can't play silence yet!");
+      return;
+    }
+
     console.log('Loading Sound');
+
     const { sound: soundToPlay } = await Audio.Sound.createAsync(
-      require('../../../assets/audio/relaxation/02-comfortable.m4a')
+      audioFiles[audioSegment.filename]
     );
     setSound(soundToPlay);
 
@@ -38,56 +49,48 @@ export const PlayerScreen = () => {
   }
 
   const onValueChange = (value: number) => {
-    let tally = 0;
-    let segmentIndex = 0;
-    let segmentStart = 0;
-
-    for (let index = 0; index < audioSegments.length; index++) {
-      const minSegmentMs = tally;
-      const maxSegmentMs = tally + audioSegments[index].duration;
-
-      if (position > minSegmentMs && position <= maxSegmentMs) {
-        segmentIndex = index;
-        segmentStart = minSegmentMs;
-        break;
-      }
-
-      tally = maxSegmentMs;
-    }
+    const segmentIndex = audioSegments.findIndex(
+      (audioSegment) =>
+        position >= audioSegment.start && position <= audioSegment.end
+    );
 
     setSegment(segmentIndex);
-    setMinSegmentMs(segmentStart);
     setPosition(value);
+    setMilliSeconds(value);
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Player Screen</Text>
-      <Button title="Play Sound" onPress={playSound} />
-      <Text>Position: {prettyMs(position, { secondsDecimalDigits: 0 })}</Text>
-      <Text>Duration: {prettyMs(minutes, { secondsDecimalDigits: 0 })}</Text>
-      <Text>Segment: {segment}</Text>
-      <Text>Segment Start: {segmentStartMs}</Text>
-      <Text>Segment Offset: {position - segmentStartMs}</Text>
-      <Slider
-        style={styles.slider}
-        minimumValue={0}
-        maximumValue={minutes}
-        step={100}
-        value={position}
-        onValueChange={onValueChange}
-      />
-      <SegmentsList audioSegments={audioSegments} segment={segment} />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.playerContainer}>
+        <Button title="Play Sound" onPress={playSound} />
+        <Text>Position: {position}</Text>
+        <Text>
+          Duration: {prettyMs(milliSeconds, { secondsDecimalDigits: 0 })}
+        </Text>
+        <Text>Segment: {segment}</Text>
+        <Slider
+          style={styles.slider}
+          minimumValue={0}
+          maximumValue={durationMs}
+          step={1}
+          value={position}
+          onValueChange={onValueChange}
+        />
+      </View>
+      <View style={styles.segmentsContainer}>
+        <SegmentsList audioSegments={audioSegments} segment={segment} />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  container: {},
+  slider: { height: 50 },
+  playerContainer: {
+    padding: 24,
   },
-  slider: { width: 400, height: 50 },
+  segmentsContainer: {
+    padding: 24,
+  },
 });

@@ -6,7 +6,7 @@ const isAudioSegment = (segment: AudioFile): segment is AudioSegment =>
   segment.type === 'audio';
 
 type PlaylistContextType = {
-  audioSegments: AudioSegment[];
+  audioSegments: DurationSegment[];
   minutes: number;
   setMinutes: (value: number) => void;
 };
@@ -19,12 +19,41 @@ export const PlaylistProvider: FC<{}> = ({ children }) => {
   const [minutes, setMinutes] = useState(30);
 
   const durationMs = minutes * 60 * 1000;
-  const audioSegments = audioFile.filter(isAudioSegment);
-  const audioDuration = audioSegments.reduce(
-    (total, segment) => total + segment.duration,
-    0
-  );
+
+  const audioDuration = audioFile
+    .filter(isAudioSegment)
+    .reduce((total, segment) => total + segment.duration, 0);
+
   const silenceDuration = durationMs - audioDuration;
+
+  let durationTime = -1;
+
+  const audioSegments: DurationSegment[] = audioFile.map((segment) => {
+    const durationTally = durationTime;
+
+    if (segment.type === 'audio') {
+      durationTime += segment.duration;
+
+      return {
+        type: 'audio',
+        duration: segment.duration,
+        filename: segment.filename,
+        start: durationTally + 1,
+        end: durationTally + segment.duration,
+      } as DurationAudioSegment;
+    } else {
+      const duration = Math.round(segment.ratio * silenceDuration);
+      durationTime += Math.round(segment.ratio * silenceDuration);
+
+      return {
+        type: 'silence',
+        duration,
+        start: durationTally + 1,
+        end: durationTally + duration,
+      } as DurationSilenceSegment;
+    }
+  });
+
   const totalDuration = audioDuration + silenceDuration;
 
   console.log({

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
 import { TabsStack } from '@navigation/Tabs.navigator';
 import { PlayerScreen } from '@screens';
@@ -9,15 +9,15 @@ export type AppStackProps = {
   Player: undefined;
 };
 
-const App = createStackNavigator<AppStackProps>();
+const App = createNativeStackNavigator<AppStackProps>();
 
 export const AppStack = () => {
   return (
     <App.Navigator
-      mode="modal"
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
+        stackPresentation: 'modal',
       }}
     >
       <App.Screen name="Home" component={TabsStack} />

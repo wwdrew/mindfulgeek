@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { CompositeNavigationProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -32,7 +32,7 @@ export const SetupScreen = ({ navigation }: Props) => {
   const onValueChange = (newMinutes: number) => setMinutes(newMinutes);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Slider
         style={styles.slider}
         minimumValue={10}
@@ -43,7 +43,7 @@ export const SetupScreen = ({ navigation }: Props) => {
       />
       <Text>Minutes: {minutes}</Text>
       <Button title={t('Start')} onPress={onPress} />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 2,
     borderColor: 'red',
+    flexGrow: 1,
   },
   slider: { width: 400, height: 50 },
 });

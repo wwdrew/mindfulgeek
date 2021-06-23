@@ -20,7 +20,7 @@ const Tabs = createBottomTabNavigator<TabsStackParamList>();
 
 export const TabsStack = () => {
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator initialRouteName="Setup">
       <Tabs.Screen name="Book" component={BookScreen} />
       <Tabs.Screen name="Setup" component={SetupScreen} />
       <Tabs.Screen name="Info" component={InfoScreen} />
